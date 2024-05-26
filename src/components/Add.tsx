@@ -1,14 +1,22 @@
 "use client"
 import React, { useState } from 'react'
 
-const Add = () => {
+const Add = ({
+    productId,
+    variantId,
+    stockNumber,
+}:{
+    productId : string ;
+    variantId : string ;
+    stockNumber : number;
+}) => {
     const [quantity  , setQuantity] = useState(1);
-    const stock = 4;
+    // const stock = 4;
     const handleQuantity=(type:"i" | "d")=>{
         if(type === "d" && quantity>1){
             setQuantity((prev) => prev-1);
         }
-        if(type === "i" && quantity<stock){
+        if(type === "i" && quantity<stockNumber){
             setQuantity((prev)=> prev+1);
         }
     }
@@ -23,7 +31,7 @@ const Add = () => {
                     <button className='cursor-pointer text-xl'onClick={()=>handleQuantity("i")}>+</button>
                 </div>
                 <div className="text-xs">
-                    Only <span className='text-red-500 font-bold'>4 items</span> left!
+                    Only <span className='text-red-500 font-bold'>{stockNumber}items</span> left!
                     <br/> {"Don't"} miss it
                 </div>
             </div>
