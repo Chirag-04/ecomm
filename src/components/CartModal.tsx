@@ -4,6 +4,7 @@ import { useCartStore } from "@/hooks/useCartStore";
 import { useWixClient } from "@/hooks/useWixClient";
 import Image from "next/image";
 import {media as wixMedia} from "@wix/sdk"
+import { useState } from "react";
 
 
 
@@ -13,7 +14,7 @@ const CartModal = () => {
   const wixClient = useWixClient();
 
   const {cart , isLoading ,removeItem} = useCartStore();
-
+ 
 
   // useEffect(()=>{
   //   getCart(wixClient);
@@ -32,7 +33,6 @@ const CartModal = () => {
         <div className="flex flex-col gap-8">
           {/* ITEM */}
         { cart.lineItems.map(item => (
-
           <div className='flex gap-4 ' key={item._id}>
           { item.image && <Image src={wixMedia.getScaledToFillImageUrl(item.image,72,96,{}) } alt='' width={72} height={96} className='object-cover rounded-md' />}
           <div className='flex flex-col justify-between w-full'>
